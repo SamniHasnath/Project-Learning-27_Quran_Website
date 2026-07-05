@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --color-islamic-green: #0F4C3A;
+  --color-islamic-gold: #C5A880;
+  --color-islamic-dark: #121212;
+  --color-islamic-light: #F5F5F5;
+  --font-sans: 'Outfit', sans-serif;
+  --font-arabic: 'Amiri', serif;
+}
+
+@layer base {
+  body {
+    @apply bg-islamic-light text-islamic-dark dark:bg-islamic-dark dark:text-islamic-light transition-colors duration-300 font-sans;
+  }
+}
+
+.glass {
+  @apply bg-white/70 dark:bg-black/40 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg;
+}
