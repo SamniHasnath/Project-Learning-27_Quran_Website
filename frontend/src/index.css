@@ -1,20 +1,57 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --color-islamic-green: #0F4C3A;
-  --color-islamic-gold: #C5A880;
-  --color-islamic-dark: #121212;
-  --color-islamic-light: #F5F5F5;
+  --color-islamic-green: #0d5c46;
+  --color-islamic-green-dark: #073327;
+  --color-islamic-green-light: #e6f0ed;
+  --color-islamic-gold: #c5a880;
+  --color-islamic-gold-dark: #a38458;
+  --color-islamic-gold-light: #f5eedf;
+  --color-islamic-dark: #0a0f0d;
+  --color-islamic-light: #fdfcf7;
   --font-sans: 'Outfit', sans-serif;
   --font-arabic: 'Amiri', serif;
 }
 
 @layer base {
   body {
-    @apply bg-islamic-light text-islamic-dark dark:bg-islamic-dark dark:text-islamic-light transition-colors duration-300 font-sans;
+    @apply bg-islamic-light text-[#1e293b] dark:bg-islamic-dark dark:text-[#e2e8f0] transition-colors duration-300 font-sans antialiased;
+  }
+  
+  /* Smooth custom scrollbars */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-islamic-green/20 dark:bg-islamic-gold/20 rounded-full hover:bg-islamic-green/45 dark:hover:bg-islamic-gold/45 transition-colors;
   }
 }
 
 .glass {
-  @apply bg-white/70 dark:bg-black/40 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg;
+  @apply bg-white/70 dark:bg-black/35 backdrop-blur-md border border-[#0d5c46]/8 dark:border-white/10 shadow-[0_8px_32px_0_rgba(15,80,60,0.03)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] transition-all duration-300;
 }
+
+.glass-interactive {
+  @apply bg-white/70 dark:bg-black/35 backdrop-blur-md border border-[#0d5c46]/8 dark:border-white/10 shadow-[0_8px_32px_0_rgba(15,80,60,0.03)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_0_rgba(15,80,60,0.06)] dark:hover:shadow-[0_12px_40px_0_rgba(197,168,128,0.06)] hover:border-islamic-green/25 dark:hover:border-islamic-gold/25 cursor-pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
