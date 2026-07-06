@@ -8,21 +8,24 @@ const SurahDetail = () => {
   const [surah, setSurah] = useState(null);
   const [loading, setLoading] = useState(true);
   const [bookmarkedAyahs, setBookmarkedAyahs] = useState(new Set());
+  const [translationMode, setTranslationMode] = useState('both'); // 'english' | 'tamil' | 'both'
   
   const { user, token } = useAuthStore();
 
   useEffect(() => {
     const fetchSurahData = async () => {
       try {
-        // Fetch Quran API data
-        const [arabicRes, translationRes] = await Promise.all([
+        // Fetch Quran API data (Arabic + English translation + Tamil translation)
+        const [arabicRes, englishRes, tamilRes] = await Promise.all([
           axios.get(`https://api.alquran.cloud/v1/surah/${id}`),
-          axios.get(`https://api.alquran.cloud/v1/surah/${id}/en.asad`)
+          axios.get(`https://api.alquran.cloud/v1/surah/${id}/en.asad`),
+          axios.get(`https://api.alquran.cloud/v1/surah/${id}/ta.tamil`)
         ]);
         
         setSurah({
           arabic: arabicRes.data.data,
-          translation: translationRes.data.data
+          english: englishRes.data.data,
+          tamil: tamilRes.data.data
         });
 
         // If user logged in, fetch their bookmarks for this surah and save history
@@ -93,51 +96,112 @@ const SurahDetail = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto animate-fade-in">
-      <Link to="/" className="inline-block mb-6 text-gray-500 hover:text-islamic-green dark:hover:text-islamic-gold transition-colors">
-        ← Back to Surahs
+    <div className="max-w-4xl mx-auto animate-fade-in px-2 md:px-0">
+      <Link 
+        to="/dashboard" 
+        className="inline-flex items-center gap-2 mb-6 text-stone-500 hover:text-islamic-green dark:hover:text-islamic-gold transition-colors duration-300 font-semibold group"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+        <span>Back to Dashboard</span>
       </Link>
       
-      <div className="text-center mb-12 glass rounded-2xl p-8 border-t-4 border-t-islamic-green dark:border-t-islamic-gold">
-        <h1 className="text-5xl font-arabic text-islamic-green dark:text-islamic-gold mb-4">
+      <div className="text-center mb-12 glass rounded-2xl p-8 md:p-12 border-t-4 border-t-islamic-green dark:border-t-islamic-gold shadow-sm relative overflow-hidden">
+        {/* Decorative background accent */}
+        <div className="absolute top-0 right-0 w-24 h-24 bg-islamic-green/5 dark:bg-islamic-gold/5 rounded-full blur-xl -translate-y-6 translate-x-6"></div>
+        
+        <h1 className="text-5xl md:text-7xl font-arabic text-islamic-green dark:text-islamic-gold mb-6 select-none font-medium leading-normal drop-shadow-sm">
           {surah.arabic.name}
         </h1>
-        <h2 className="text-2xl font-bold mb-2">{surah.arabic.englishName}</h2>
-        <p className="text-gray-500">{surah.arabic.englishNameTranslation}</p>
-        <div className="flex justify-center gap-4 mt-6 text-sm font-semibold uppercase tracking-widest text-gray-400">
-          <span>{surah.arabic.revelationType}</span>
+        <h2 className="text-3xl font-bold mb-2 font-sans text-stone-800 dark:text-stone-100 tracking-tight">
+          {surah.arabic.englishName}
+        </h2>
+        <p className="text-stone-500 dark:text-stone-400 italic text-base mb-6">
+          {surah.arabic.englishNameTranslation}
+        </p>
+        <div className="flex justify-center items-center gap-3 mt-6 text-xs font-semibold uppercase tracking-widest text-stone-400 dark:text-stone-500">
+          <span className="bg-stone-100 dark:bg-stone-900/60 px-3 py-1 rounded-md">
+            {surah.arabic.revelationType}
+          </span>
           <span>•</span>
-          <span>{surah.arabic.numberOfAyahs} Ayahs</span>
+          <span className="bg-stone-100 dark:bg-stone-900/60 px-3 py-1 rounded-md">
+            {surah.arabic.numberOfAyahs} Ayahs
+          </span>
+        </div>
+
+        <div className="mt-8 flex justify-center items-center gap-4 bg-white/40 dark:bg-stone-900/30 border border-stone-200/40 dark:border-stone-850 px-4 py-2.5 rounded-xl max-w-sm mx-auto shadow-sm backdrop-blur-sm">
+          <label className="text-xs font-bold uppercase tracking-wider text-stone-600 dark:text-stone-400">Translation:</label>
+          <select 
+            value={translationMode}
+            onChange={(e) => setTranslationMode(e.target.value)}
+            className="text-xs font-bold text-stone-800 dark:text-stone-200 bg-transparent border-none focus:outline-none cursor-pointer"
+          >
+            <option value="both" className="bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200">English & Tamil</option>
+            <option value="english" className="bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200">English Only</option>
+            <option value="tamil" className="bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200">Tamil Only</option>
+          </select>
         </div>
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-6">
         {surah.arabic.ayahs.map((ayah, index) => (
-          <div key={ayah.numberInSurah} className="glass p-6 md:p-8 rounded-xl border-l-4 border-l-transparent hover:border-l-islamic-green dark:hover:border-l-islamic-gold transition-all">
+          <div 
+            key={ayah.numberInSurah} 
+            className="glass p-6 md:p-8 rounded-2xl border-l-4 border-l-transparent hover:border-l-islamic-green dark:hover:border-l-islamic-gold transition-all duration-300 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.02)] hover:shadow-md"
+          >
             <div className="flex flex-col gap-6">
-              <div className="flex justify-between items-start gap-4">
-                <div className="flex flex-col items-center gap-2">
-                  <span className="flex-shrink-0 w-10 h-10 rounded-full bg-islamic-green/10 dark:bg-islamic-gold/10 flex items-center justify-center font-bold text-islamic-green dark:text-islamic-gold text-sm">
+              <div className="flex justify-between items-start gap-5">
+                <div className="flex flex-col items-center gap-3">
+                  <span className="flex-shrink-0 w-9 h-9 rounded-xl bg-islamic-green/10 dark:bg-islamic-gold/10 flex items-center justify-center font-bold text-islamic-green dark:text-islamic-gold text-xs border border-islamic-green/5 dark:border-islamic-gold/5 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]">
                     {ayah.numberInSurah}
                   </span>
                   {user && (
                     <button 
                       onClick={() => toggleBookmark(ayah.numberInSurah)}
-                      className={`text-2xl transition-colors ${bookmarkedAyahs.has(ayah.numberInSurah) ? 'text-islamic-gold' : 'text-gray-300 hover:text-islamic-green'}`}
+                      className="p-1.5 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800/60 transition-colors cursor-pointer"
                       title="Bookmark this Ayah"
                     >
-                      {bookmarkedAyahs.has(ayah.numberInSurah) ? '★' : '☆'}
+                      {bookmarkedAyahs.has(ayah.numberInSurah) ? (
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-islamic-gold drop-shadow-sm hover:scale-110 transition-transform">
+                          <path fillRule="evenodd" d="M6.32 2.577a.75.75 0 011.12-.124l3.117 3.025 3.117-3.025a.75.75 0 011.12.124l4.753 5.704a1.5 1.5 0 01.373 1.02v11.453a.75.75 0 01-1.2.6L12 17.69l-7.8 3.85a.75.75 0 01-1.2-.6V9.302a1.5 1.5 0 01.373-1.02l4.752-5.704z" clipRule="evenodd" />
+                        </svg>
+                      ) : (
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-5 h-5 text-stone-400 dark:text-stone-500 hover:text-islamic-green dark:hover:text-islamic-gold hover:scale-110 transition-all">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.375c0-1.036-.84-1.875-1.875-1.875H8.281c-1.036 0-1.875.84-1.875 1.875v15.656a1.5 1.5 0 002.533 1.113l3.061-2.906 3.06 2.906a1.5 1.5 0 002.534-1.113V3.375z" />
+                        </svg>
+                      )}
                     </button>
                   )}
                 </div>
-                <p className="text-3xl md:text-4xl font-arabic leading-loose text-right text-islamic-dark dark:text-islamic-light w-full">
+                <p 
+                  className="text-3xl md:text-5xl font-arabic leading-[2.1] md:leading-[2.2] text-right text-stone-900 dark:text-stone-100 w-full select-all tracking-normal"
+                  dir="rtl"
+                >
                   {ayah.text}
                 </p>
               </div>
-              <div className="pt-4 border-t border-gray-100 dark:border-gray-800">
-                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                  {surah.translation.ayahs[index].text}
-                </p>
+              <div className="pt-5 border-t border-stone-100 dark:border-stone-800/40 space-y-4">
+                {(translationMode === 'english' || translationMode === 'both') && (
+                  <div>
+                    {translationMode === 'both' && (
+                      <span className="text-[10px] uppercase tracking-wider font-bold text-stone-450 dark:text-stone-500 block mb-1">English (Asad)</span>
+                    )}
+                    <p className="text-stone-650 dark:text-stone-300 leading-relaxed font-sans text-base md:text-lg">
+                      {surah.english.ayahs[index].text}
+                    </p>
+                  </div>
+                )}
+                {(translationMode === 'tamil' || translationMode === 'both') && (
+                  <div className={translationMode === 'both' ? "pt-3 border-t border-stone-150/45 dark:border-stone-850/50" : ""}>
+                    {translationMode === 'both' && (
+                      <span className="text-[10px] uppercase tracking-wider font-bold text-islamic-gold block mb-1">Tamil (ஜான் டிரஸ்ட்)</span>
+                    )}
+                    <p className="text-stone-650 dark:text-stone-300 leading-relaxed font-sans text-base md:text-lg">
+                      {surah.tamil.ayahs[index].text}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
