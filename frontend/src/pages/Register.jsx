@@ -35,52 +35,54 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center animate-fade-in">
-      <div className="glass p-8 md:p-10 rounded-2xl w-full max-w-md border-t-4 border-t-islamic-green dark:border-t-islamic-gold shadow-2xl">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-islamic-green dark:text-islamic-gold mb-2">Create Account</h2>
-          <p className="text-gray-500">Join our community of Quran learners</p>
+    <div className="min-h-[75vh] flex items-center justify-center animate-fade-in px-4">
+      <div className="glass p-8 md:p-10 rounded-2xl w-full max-w-md border-t-4 border-t-islamic-green dark:border-t-islamic-gold shadow-xl relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-20 h-20 bg-islamic-green/5 dark:bg-islamic-gold/5 rounded-full blur-lg -translate-y-4 translate-x-4"></div>
+        
+        <div className="text-center mb-8 relative">
+          <h2 className="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-2 tracking-tight">Create Account</h2>
+          <p className="text-stone-500 dark:text-stone-400 text-sm">Join our community of Quran learners</p>
         </div>
 
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+          <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/30 text-red-600 dark:text-red-400 px-4 py-3 rounded-xl mb-6 text-sm font-semibold">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Name</label>
+            <label className="block text-xs font-semibold uppercase tracking-wider mb-2 text-stone-600 dark:text-stone-400">Name</label>
             <input 
               type="text" 
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/50 dark:bg-black/20 focus:outline-none focus:ring-2 focus:ring-islamic-green dark:focus:ring-islamic-gold"
+              className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/50 dark:bg-stone-900/40 text-stone-800 dark:text-stone-100 placeholder-stone-400 dark:placeholder-stone-600 focus:outline-none focus:border-islamic-green/40 dark:focus:border-islamic-gold/40 focus:ring-2 focus:ring-islamic-green/10 dark:focus:ring-islamic-gold/10 transition-all duration-300"
               placeholder="John Doe"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Email</label>
+            <label className="block text-xs font-semibold uppercase tracking-wider mb-2 text-stone-600 dark:text-stone-400">Email Address</label>
             <input 
               type="email" 
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/50 dark:bg-black/20 focus:outline-none focus:ring-2 focus:ring-islamic-green dark:focus:ring-islamic-gold"
+              className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/50 dark:bg-stone-900/40 text-stone-800 dark:text-stone-100 placeholder-stone-400 dark:placeholder-stone-600 focus:outline-none focus:border-islamic-green/40 dark:focus:border-islamic-gold/40 focus:ring-2 focus:ring-islamic-green/10 dark:focus:ring-islamic-gold/10 transition-all duration-300"
               placeholder="you@example.com"
             />
           </div>
           
           <div>
-            <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Password</label>
+            <label className="block text-xs font-semibold uppercase tracking-wider mb-2 text-stone-600 dark:text-stone-400">Password</label>
             <input 
               type="password" 
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white/50 dark:bg-black/20 focus:outline-none focus:ring-2 focus:ring-islamic-green dark:focus:ring-islamic-gold"
+              className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/50 dark:bg-stone-900/40 text-stone-800 dark:text-stone-100 placeholder-stone-400 dark:placeholder-stone-600 focus:outline-none focus:border-islamic-green/40 dark:focus:border-islamic-gold/40 focus:ring-2 focus:ring-islamic-green/10 dark:focus:ring-islamic-gold/10 transition-all duration-300"
               placeholder="••••••••"
               minLength="6"
             />
@@ -89,13 +91,13 @@ const Register = () => {
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full py-3 rounded-lg bg-islamic-green dark:bg-islamic-gold text-white dark:text-islamic-dark font-bold hover:opacity-90 transition-opacity disabled:opacity-50"
+            className="w-full py-3.5 mt-2 rounded-xl bg-islamic-green dark:bg-islamic-gold text-white dark:text-islamic-dark font-bold hover:shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? 'Creating Account...' : 'Sign Up'}
           </button>
         </form>
 
-        <p className="mt-6 text-center text-gray-600 dark:text-gray-400">
+        <p className="mt-6 text-center text-sm text-stone-600 dark:text-stone-400">
           Already have an account?{' '}
           <Link to="/login" className="text-islamic-green dark:text-islamic-gold font-bold hover:underline">
             Sign in
