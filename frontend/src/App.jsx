@@ -1,23 +1,35 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
 import SurahDetail from './pages/SurahDetail';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import useAuthStore from './store/authStore';
+
+// ProtectedRoute: Only allows authenticated users
+const ProtectedRoute = ({ children }) => {
+  const { user } = useAuthStore();
+  return user ? children : <Navigate to="/login" replace />;
+};
+
+// PublicRoute: Only allows unauthenticated users (redirects authenticated users to home)
+const PublicRoute = ({ children }) => {
+  const { user } = useAuthStore();
+  return !user ? children : <Navigate to="/" replace />;
+};
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    // Check system preference or local storage
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setDarkMode(true);
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('darkMode');
+    if (saved !== null) {
+      return saved === 'true';
     }
-  }, []);
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
 
   useEffect(() => {
+    localStorage.setItem('darkMode', darkMode);
     if (darkMode) {
       document.documentElement.classList.add('dark');
     } else {
@@ -27,15 +39,15 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50/15 to-[#f5f3eb] dark:from-[#060c0a] dark:via-[#0c1713] dark:to-[#08100d] text-[#1e293b] dark:text-[#e2e8f0] transition-colors duration-300">
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         <main className="container mx-auto px-4 py-8">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/surah/:id" element={<SurahDetail />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/surah/:id" element={<ProtectedRoute><SurahDetail /></ProtectedRoute>} />
+            <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+            <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           </Routes>
         </main>
       </div>
