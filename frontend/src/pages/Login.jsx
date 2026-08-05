@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useAuthStore from '../store/authStore';
+import { API_URL } from '../utils/api';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -18,7 +19,7 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
+      const response = await axios.post(`${API_URL}/api/auth/login`, {
         email,
         password
       });
@@ -36,7 +37,17 @@ const Login = () => {
     <div className="min-h-[75vh] flex items-center justify-center animate-fade-in px-4">
       <div className="glass p-8 md:p-10 rounded-2xl w-full max-w-md border-t-4 border-t-islamic-green dark:border-t-islamic-gold shadow-xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-20 h-20 bg-islamic-green/5 dark:bg-islamic-gold/5 rounded-full blur-lg -translate-y-4 translate-x-4"></div>
-        
+
+        <Link
+          to="/"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-stone-500 dark:text-stone-400 hover:text-islamic-green dark:hover:text-islamic-gold transition-colors relative mb-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-3.5 h-3.5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          </svg>
+          Back to Home
+        </Link>
+
         <div className="text-center mb-8 relative">
           <h2 className="text-3xl font-bold text-stone-800 dark:text-stone-100 mb-2 tracking-tight">Welcome Back</h2>
           <p className="text-stone-500 dark:text-stone-400 text-sm">Sign in to continue your learning journey</p>
