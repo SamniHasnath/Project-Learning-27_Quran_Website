@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
+import Landing from './pages/Landing';
 import SurahDetail from './pages/SurahDetail';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -11,6 +12,12 @@ import useAuthStore from './store/authStore';
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuthStore();
   return user ? children : <Navigate to="/login" replace />;
+};
+
+// HomeRoute: Shows the landing page to guests, sends logged-in users to their dashboard
+const HomeRoute = () => {
+  const { user } = useAuthStore();
+  return user ? <Navigate to="/dashboard" replace /> : <Landing />;
 };
 
 // PublicRoute: Only allows unauthenticated users (redirects authenticated users to home)
@@ -43,7 +50,7 @@ function App() {
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         <main className="container mx-auto px-4 py-8">
           <Routes>
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/" element={<HomeRoute />} />
             <Route path="/surah/:id" element={<ProtectedRoute><SurahDetail /></ProtectedRoute>} />
             <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
             <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
