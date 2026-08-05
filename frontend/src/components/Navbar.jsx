@@ -12,6 +12,10 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           <span className="font-sans tracking-tight">Quran Learning</span>
         </Link>
         <div className="flex items-center gap-5">
+          <Link to="/search" className="text-sm font-semibold text-stone-700 dark:text-stone-300 hover:text-islamic-green dark:hover:text-islamic-gold transition-colors">
+            Search Quran
+          </Link>
+
           {user ? (
             <div className="flex items-center gap-5">
               <Link to="/dashboard" className="text-sm font-semibold text-stone-700 dark:text-stone-300 hover:text-islamic-green dark:hover:text-islamic-gold transition-colors">
