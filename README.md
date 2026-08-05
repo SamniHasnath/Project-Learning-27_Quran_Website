@@ -50,13 +50,46 @@ This platform is built using a modern **MERN-like** architecture (using MySQL in
 
 ---
 
-## 💻 Running the Project Locally
+## 💻 How to Run the Project
 
-### Prerequisites
+You can run this project either using **Docker** (recommended, as it automatically sets up all dependencies and database schemas) or **locally** on your machine.
+
+---
+
+### Option 1: Running with Docker (Recommended)
+
+This is the easiest way to run the project. You do not need to install Node.js or MySQL on your host machine.
+
+#### Prerequisites
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
+
+#### Steps to Run
+1. Open your terminal in the project root directory.
+2. Build and start all services (database, backend, frontend) by running:
+   ```bash
+   docker compose up --build
+   ```
+3. Once the build is complete and containers are running, you can access:
+   - **Frontend UI**: [http://localhost:5173](http://localhost:5173)
+   - **Backend API Status**: [http://localhost:5000/api/test](http://localhost:5000/api/test)
+   - **Database Connection Check**: [http://localhost:5000/api/db-status](http://localhost:5000/api/db-status) (Checks if backend can communicate with MySQL)
+
+#### Stopping the Application
+To stop the services, press `Ctrl + C` in your terminal, or run:
+```bash
+docker compose down
+```
+*(Add the `-v` flag as `docker compose down -v` if you wish to wipe the database volume and start fresh next time).*
+
+---
+
+### Option 2: Running Locally (Without Docker)
+
+#### Prerequisites
 - Node.js (v18+)
 - MySQL Server
 
-### 1. Database Setup
+#### 1. Database Setup
 1. Open MySQL and ensure your local server is running.
 2. Navigate to the `backend` folder and configure your `.env` file:
    ```env
@@ -69,17 +102,18 @@ This platform is built using a modern **MERN-like** architecture (using MySQL in
    ```
 3. Run `node run_init_db.js` in the `backend` folder to automatically create the database and tables.
 
-### 2. Start the Backend Server
+#### 2. Start the Backend Server
 ```bash
 cd backend
 npm install
 npm run start # or `npx nodemon server.js` for development
 ```
 
-### 3. Start the Frontend Development Server
+#### 3. Start the Frontend Development Server
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
 The app will be available at `http://localhost:5173`.
+
