@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAuthStore from '../store/authStore';
 
 const Navbar = ({ darkMode, setDarkMode }) => {
   const { user, logout } = useAuthStore();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <nav className="glass sticky top-0 z-50 px-6 py-4 mb-8 border-b border-islamic-green/10 dark:border-islamic-gold/15 bg-white/70 dark:bg-islamic-dark/75">
@@ -11,7 +14,9 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           <span className="text-3xl filter drop-shadow-[0_2px_8px_rgba(13,92,70,0.15)] dark:drop-shadow-[0_2px_8px_rgba(197,168,128,0.25)]">📖</span>
           <span className="font-sans tracking-tight">Quran Learning</span>
         </Link>
-        <div className="flex items-center gap-5">
+
+        {/* Desktop links */}
+        <div className="hidden md:flex items-center gap-5">
           <Link to="/search" className="text-sm font-semibold text-stone-700 dark:text-stone-300 hover:text-islamic-green dark:hover:text-islamic-gold transition-colors">
             Search Quran
           </Link>
@@ -35,9 +40,9 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               </Link>
             </div>
           )}
-          
+
           <div className="h-5 w-px bg-stone-300 dark:bg-stone-700"></div>
-          
+
           <button
             onClick={() => setDarkMode(!darkMode)}
             className="relative w-14 h-8 rounded-full bg-stone-200 dark:bg-stone-900 p-1 cursor-pointer transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)] dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] focus:outline-none flex items-center justify-between group"
@@ -70,7 +75,97 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             </div>
           </button>
         </div>
+
+        {/* Mobile controls */}
+        <div className="flex md:hidden items-center gap-3">
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="relative w-12 h-7 rounded-full bg-stone-200 dark:bg-stone-900 p-1 cursor-pointer transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)] dark:shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)] focus:outline-none flex items-center"
+            aria-label="Toggle Dark Mode"
+          >
+            <div
+              className={`w-5 h-5 rounded-full bg-white dark:bg-islamic-dark shadow-md transition-all duration-300 ease-out flex items-center justify-center border border-stone-200/50 dark:border-stone-850 ${
+                darkMode ? 'translate-x-5' : 'translate-x-0'
+              }`}
+            >
+              {darkMode ? (
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-3 h-3 text-islamic-gold">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-3 h-3 text-amber-500">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m0 13.5V21M4.93 4.93l1.59 1.59m10.96 10.96l1.59 1.59M3 12h2.25m13.5 0H21m-2.23-7.07l-1.59 1.59m-10.96 10.96l-1.59 1.59M12 8.25a3.75 3.75 0 100 7.5 3.75 3.75 0 000-7.5z" />
+                </svg>
+              )}
+            </div>
+          </button>
+
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="p-2 rounded-lg text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800/50 transition-colors cursor-pointer"
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? (
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.2} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.2} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+              </svg>
+            )}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile dropdown panel */}
+      {menuOpen && (
+        <div className="md:hidden container mx-auto mt-4 pt-4 pb-1 flex flex-col gap-1.5 border-t border-stone-200/50 dark:border-stone-800/50 animate-fade-in">
+          <Link
+            to="/search"
+            onClick={closeMenu}
+            className="px-4 py-3 rounded-xl font-semibold text-sm text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800/50 transition-colors"
+          >
+            Search Quran
+          </Link>
+
+          {user ? (
+            <>
+              <Link
+                to="/dashboard"
+                onClick={closeMenu}
+                className="px-4 py-3 rounded-xl font-semibold text-sm text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800/50 transition-colors"
+              >
+                {user.name}
+              </Link>
+              <button
+                onClick={() => { logout(); closeMenu(); }}
+                className="text-left px-4 py-3 rounded-xl font-semibold text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors cursor-pointer"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                onClick={closeMenu}
+                className="px-4 py-3 rounded-xl font-semibold text-sm text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800/50 transition-colors"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                onClick={closeMenu}
+                className="px-4 py-3 rounded-xl font-bold text-sm text-center bg-islamic-green dark:bg-islamic-gold text-white dark:text-islamic-dark hover:shadow-md transition-all"
+              >
+                Sign Up
+              </Link>
+            </>
+          )}
+        </div>
+      )}
     </nav>
   );
 };
