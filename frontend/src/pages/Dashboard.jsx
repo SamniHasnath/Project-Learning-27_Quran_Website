@@ -4,6 +4,7 @@ import axios from 'axios';
 import useAuthStore from '../store/authStore';
 import { motion } from 'framer-motion';
 import { juzToSurahs, getJuzsForSurah } from '../utils/quranData';
+import { API_URL } from '../utils/api';
 
 const Dashboard = () => {
   const { user, token, logout } = useAuthStore();
@@ -32,10 +33,10 @@ const Dashboard = () => {
     const fetchUserData = async () => {
       try {
         const [historyRes, bookmarksRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/user/history', {
+          axios.get(`${API_URL}/api/user/history`, {
             headers: { Authorization: `Bearer ${token}` }
           }),
-          axios.get('http://localhost:5000/api/user/bookmarks', {
+          axios.get(`${API_URL}/api/user/bookmarks`, {
             headers: { Authorization: `Bearer ${token}` }
           })
         ]);

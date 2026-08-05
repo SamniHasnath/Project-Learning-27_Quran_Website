@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import useAuthStore from '../store/authStore';
+import { API_URL } from '../utils/api';
 
 const SurahDetail = () => {
   const { id } = useParams();
@@ -32,13 +33,13 @@ const SurahDetail = () => {
         if (user && token) {
           try {
             // Save history
-            await axios.post('http://localhost:5000/api/user/history', {
+            await axios.post(`${API_URL}/api/user/history`, {
               surah_id: parseInt(id),
               last_ayah_read: 1
             }, { headers: { Authorization: `Bearer ${token}` } });
 
             // Fetch bookmarks
-            const bookmarkRes = await axios.get('http://localhost:5000/api/user/bookmarks', {
+            const bookmarkRes = await axios.get(`${API_URL}/api/user/bookmarks`, {
               headers: { Authorization: `Bearer ${token}` }
             });
             
@@ -68,7 +69,7 @@ const SurahDetail = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/user/bookmarks', {
+      const response = await axios.post(`${API_URL}/api/user/bookmarks`, {
         surah_id: parseInt(id),
         ayah_number: ayahNumber
       }, { headers: { Authorization: `Bearer ${token}` } });
