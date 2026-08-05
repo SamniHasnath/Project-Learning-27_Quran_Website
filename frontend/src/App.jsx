@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Landing from './pages/Landing';
+import Search from './pages/Search';
 import SurahDetail from './pages/SurahDetail';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -51,7 +52,8 @@ function App() {
         <main className="container mx-auto px-4 py-8">
           <Routes>
             <Route path="/" element={<HomeRoute />} />
-            <Route path="/surah/:id" element={<ProtectedRoute><SurahDetail /></ProtectedRoute>} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/surah/:id" element={<SurahDetail />} />
             <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
             <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
