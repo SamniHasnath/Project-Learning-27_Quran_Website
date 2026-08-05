@@ -222,7 +222,7 @@ const Landing = () => {
 
       {/* Footer */}
       <footer className="border-t border-stone-200/60 dark:border-stone-800/60 py-8 flex flex-col md:flex-row justify-between items-center gap-3 text-sm text-stone-500 dark:text-stone-400">
-        <span>© {new Date().getFullYear()} Quran Learning. All rights reserved.</span>
+        <span>© {new Date().getFullYear()} Quran Learning. All rights reserved. · Created by Samni Hasnath</span>
         <div className="flex items-center gap-5">
           <Link to="/login" className="hover:text-islamic-green dark:hover:text-islamic-gold transition-colors">Login</Link>
           <Link to="/register" className="hover:text-islamic-green dark:hover:text-islamic-gold transition-colors">Sign Up</Link>
