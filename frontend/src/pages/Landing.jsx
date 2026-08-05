@@ -67,12 +67,12 @@ const Landing = () => {
             >
               Start Free
             </Link>
-            <a
-              href="#features"
+            <Link
+              to="/search"
               className="border border-stone-300 dark:border-stone-700 text-stone-700 dark:text-stone-200 font-bold px-6 py-3.5 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800/50 transition-all"
             >
-              Explore Features
-            </a>
+              Search the Quran
+            </Link>
           </div>
           <div className="flex items-center gap-6 mt-10 text-sm text-stone-500 dark:text-stone-400">
             <div className="flex items-center gap-1.5">
@@ -204,12 +204,20 @@ const Landing = () => {
         <div className="absolute -top-16 -right-16 w-56 h-56 bg-white/10 rounded-full blur-3xl"></div>
         <h2 className="text-3xl font-bold tracking-tight relative z-10">Begin your Quran journey today</h2>
         <p className="mt-3 opacity-90 max-w-md mx-auto relative z-10">Join learners around the world reading and reflecting on the Quran, free and forever.</p>
-        <Link
-          to="/register"
-          className="inline-block mt-7 bg-white dark:bg-islamic-dark text-islamic-green dark:text-islamic-gold font-bold px-7 py-3.5 rounded-xl hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all relative z-10"
-        >
-          Create Free Account
-        </Link>
+        <div className="flex flex-wrap gap-4 justify-center mt-7 relative z-10">
+          <Link
+            to="/register"
+            className="inline-block bg-white dark:bg-islamic-dark text-islamic-green dark:text-islamic-gold font-bold px-7 py-3.5 rounded-xl hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all"
+          >
+            Create Free Account
+          </Link>
+          <Link
+            to="/search"
+            className="inline-block border border-white/50 dark:border-islamic-dark/40 font-bold px-7 py-3.5 rounded-xl hover:bg-white/10 dark:hover:bg-islamic-dark/10 transition-all"
+          >
+            Or Search Without Signing Up
+          </Link>
+        </div>
       </motion.section>
 
       {/* Footer */}
