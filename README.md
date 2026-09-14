@@ -166,8 +166,6 @@ Landing Page
               │
               └── Bookmarked Ayahs
 ```
-
----
 ---
 
 ## 🛠️ Admin Panel
@@ -705,27 +703,6 @@ The application is designed to work across:
 * 📱 Tablet
 
 The interface adapts to different screen sizes using responsive Tailwind CSS layouts.
-
----
-
-# 🎯 Project Goals
-
-This project is not only focused on building a Quran reader.
-
-It is designed as a practical **full-stack software engineering project** demonstrating:
-
-* Frontend development
-* Backend development
-* REST API design
-* Authentication
-* Authorization
-* Database design
-* External API integration
-* State management
-* Responsive UI
-* Docker containerization
-* Application architecture
-* Scalable feature development
 
 ---
 
