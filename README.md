@@ -814,38 +814,6 @@ Please ensure that Quranic content, translations, audio, and other external reso
 
 Software Engineering Undergraduate
 
-### Technologies
-
-```text
-React
-Node.js
-Express.js
-MySQL
-JavaScript
-Docker
-REST APIs
-JWT
-Tailwind CSS
-```
-
----
-
-## ⭐ Support the Project
-
-If you find this project useful or interesting:
-
-⭐ Star the repository
-
-🍴 Fork the project
-
-🐛 Report issues
-
-💡 Suggest improvements
-
-🤝 Contribute to development
-
----
-
 > 🕌 **"And We have certainly made the Quran easy for remembrance, so is there anyone who will remember?"**
 >
 > — Quran 54:17
