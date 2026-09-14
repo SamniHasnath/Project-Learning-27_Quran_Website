@@ -169,22 +169,6 @@ Landing Page
 
 ---
 
-# 🚀 Development Roadmap
-
-The project is being developed in multiple phases.
-
-## ✅ Phase 1 — Foundation
-
-* React application setup
-* Vite configuration
-* Tailwind CSS setup
-* Responsive layout
-* Islamic-themed UI
-* Navigation
-* Basic project architecture
-
----
-
 ## ✅ Phase 2 — Quran Reading
 
 * Surah browser
