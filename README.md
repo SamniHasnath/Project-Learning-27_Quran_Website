@@ -816,4 +816,4 @@ Software Engineering Undergraduate
 
 > 🕌 **"And We have certainly made the Quran easy for remembrance, so is there anyone who will remember?"**
 >
-> — Quran 54:17
+> - Quran 54:17
