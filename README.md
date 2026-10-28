@@ -1,467 +1,270 @@
+<div align="center">
+
 # 📖 Islamic Quran Learning Platform
 
-> A modern, interactive full-stack web application designed to make **Quran reading, learning, bookmarking, and progress tracking** simple and accessible.
+**A modern full-stack web app for reading, bookmarking, and tracking your Quran learning journey.**
 
-The **Islamic Quran Learning Platform** provides a clean, distraction-free learning environment where users can browse all 114 Surahs, read Arabic verses with English translations, bookmark important Ayahs, and continue their learning journey from where they left off.
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](#-tech-stack)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](#-tech-stack)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](#-tech-stack)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](#-tech-stack)
+[![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)](#-tech-stack)
+[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](#-tech-stack)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](#-option-1-run-with-docker-recommended)
 
-The application is built with a modern **React + Node.js + Express + MySQL** architecture and integrates the **AlQuran.cloud API** for Quranic content.
-
----
-
-## 🌐 Project Overview
-
-The goal of this project is to build a complete Quran learning platform that combines:
-
-* 📖 Quran reading
-* 🔊 Audio recitation
-* 🔖 Ayah bookmarking
-* 📚 Learning history
-* 🔐 Secure user authentication
-* 📊 Learning progress
-* 🔎 Quran search
-* 🧠 Memorization support
-* 🕌 Islamic resources
-
-The platform is being developed incrementally through multiple development phases.
+</div>
 
 ---
 
-## ✨ Current Features
+## 📖 About
 
-### 🕌 1. Quran Surah Browser
+The **Islamic Quran Learning Platform** offers a calm, distraction-free space to:
 
-Users can browse all **114 Surahs** of the Quran through a modern, responsive interface.
+- 🕌 Browse all **114 Surahs**
+- 📖 Read Arabic verses alongside English translations
+- 🔖 Bookmark meaningful Ayahs
+- 🕘 Pick up right where you left off
 
-Each Surah displays:
-
-* Arabic name
-* English name
-* Surah number
-* Number of Ayahs
-* Revelation information
-* Quick navigation to the reading view
+It's built on **React + Node.js + Express + MySQL**, with Quranic content provided by the **[AlQuran.cloud API](https://alquran.cloud/api)**. The platform is being developed in phases — see the [Roadmap](#-roadmap) for what's coming next.
 
 ---
 
-### 📖 2. Interactive Quran Reading
+## 📑 Table of Contents
 
-Users can open any Surah and read the Quran using a clean reading interface.
-
-The reading view provides:
-
-* Arabic Quranic text
-* English translation
-* Ayah-by-Ayah layout
-* Traditional Arabic typography
-* Bookmark functionality
-* Smooth navigation
-
-The Arabic text uses the **Amiri font** to provide a traditional Quran-reading experience.
-
----
-
-### 🔖 3. Ayah Bookmarking
-
-Users can save important Ayahs by clicking the bookmark/star button.
-
-Bookmarked Ayahs can later be accessed from the personal dashboard.
-
-This allows users to save:
-
-* Favorite Ayahs
-* Important verses
-* Verses for revision
-* Verses for memorization
+- [Features](#-features)
+- [Screens](#️-screens)
+- [System Architecture](#️-system-architecture)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Environment Variables](#-environment-variables)
+- [How It Works](#-how-it-works)
+- [API Overview](#-api-overview)
+- [Roadmap](#-roadmap)
+- [Learning Outcomes](#-learning-outcomes)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Author](#-author)
 
 ---
 
-### 🕘 4. Reading History
+## ✨ Features
 
-The application automatically tracks the user's reading activity.
+### 🕌 Surah Browser
+Browse all 114 Surahs, each showing its **Arabic name, English name, number, Ayah count, and revelation type**, with one-click access to the reading view.
 
-Users can:
+### 📖 Interactive Reading
+- Arabic text with English translation, laid out **Ayah by Ayah**
+- Traditional typography using the **Amiri** font
+- Bookmark any Ayah directly while reading
 
-* See recently visited Surahs
-* Continue from their previous learning activity
-* Quickly return to previously opened content
+### 🔖 Ayah Bookmarks
+Save favorite, important, or memorization verses with the ⭐ button — all available later in your dashboard.
 
----
+### 🕘 Reading History
+Your reading activity is tracked automatically, so you can revisit recent Surahs and continue where you stopped.
 
-### 👤 5. Personal Dashboard
+### 👤 Personal Dashboard
+One place for your **reading history**, **saved bookmarks**, and **recently viewed Surahs**, with quick links back into reading.
 
-Authenticated users have access to a personalized dashboard.
+### 🔐 Secure Authentication
+- Registration and login
+- Passwords hashed with **bcryptjs**
+- **JWT**-based authentication with protected routes
+- Persistent login state
 
-The dashboard displays:
+### 🌙 Dark Mode
+A dedicated dark theme for comfortable reading in low light.
 
-* 📚 Reading history
-* 🔖 Saved bookmarks
-* 📖 Recently viewed Surahs
-* 🔗 Quick navigation back to Quran reading
-
----
-
-### 🔐 6. Authentication & Security
-
-The application includes secure user authentication.
-
-Implemented technologies include:
-
-* User registration
-* User login
-* Password hashing
-* JWT authentication
-* Protected routes
-* Persistent login state
-* Secure API requests
-
-Passwords are hashed using **bcryptjs**, while **JSON Web Tokens (JWT)** are used for authentication and session management.
+### 🎨 Islamic-Inspired Design
+Emerald green and gold palette, glassmorphism, soft shadows, rounded components, and smooth **Framer Motion** transitions — fully responsive across desktop, tablet, and mobile.
 
 ---
 
-### 🌙 7. Dark Mode
-
-The application includes a dedicated dark theme designed for comfortable Quran reading, especially during low-light conditions.
-
----
-
-### 🎨 8. Modern Islamic UI
-
-The platform uses a premium Islamic-inspired design system featuring:
-
-* Emerald green
-* Gold accents
-* Glassmorphism
-* Soft shadows
-* Rounded components
-* Responsive layouts
-* Smooth animations
-* Framer Motion transitions
-
-The design focuses on creating a calm and distraction-free learning environment.
-
----
-
-# 🖥️ Application Screens
-
-The application currently includes the following major screens:
+## 🖥️ Screens
 
 ```text
 Landing Page
-      │
-      ├── About
-      │
-      ├── Quran / Surah Browser
-      │       │
-      │       └── Surah Reading
-      │              │
-      │              └── Bookmark Ayah
-      │
-      ├── Login
-      │
-      ├── Register
-      │
-      └── User Dashboard
-              │
-              ├── Reading History
-              │
-              └── Bookmarked Ayahs
+├── About
+├── Quran (Surah Browser)
+│   └── Surah Reading
+│       └── Bookmark Ayah ⭐
+├── Login
+├── Register
+└── Dashboard  🔒
+    ├── Reading History
+    └── Bookmarked Ayahs
 ```
----
-
-## 🛠️ Admin Panel
-
-An administrator dashboard will be introduced for platform management.
-
-Planned functionality:
-
-* User management
-* Islamic article management
-* Quiz management
-* Content moderation
-* Platform statistics
-* User activity monitoring
 
 ---
 
-# 🏗️ System Architecture
-
-The project follows a full-stack client-server architecture.
+## 🏗️ System Architecture
 
 ```text
-                    ┌─────────────────────┐
-                    │       User          │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │   React Frontend    │
-                    │       Vite          │
-                    └──────────┬──────────┘
-                               │
-                         REST API / Axios
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │  Node.js + Express  │
-                    │      Backend        │
-                    └───────┬─────┬───────┘
-                            │     │
-                  ┌─────────┘     └──────────┐
-                  ▼                          ▼
-        ┌─────────────────┐       ┌──────────────────┐
-        │   MySQL         │       │ AlQuran.cloud API│
-        │   Database      │       │ Quranic Content  │
-        └─────────────────┘       └──────────────────┘
+                 ┌─────────────────────┐
+                 │        User         │
+                 └──────────┬──────────┘
+                            ▼
+                 ┌─────────────────────┐
+                 │   React + Vite      │
+                 │     Frontend        │
+                 └─────┬─────────┬─────┘
+          REST (Axios) │         │ Quran data
+                       ▼         ▼
+       ┌─────────────────────┐  ┌──────────────────────┐
+       │  Node.js + Express  │  │  AlQuran.cloud API   │
+       │      Backend        │  │  (Surahs, Ayahs,     │
+       └──────────┬──────────┘  │   translations)      │
+                  ▼             └──────────────────────┘
+       ┌─────────────────────┐
+       │   MySQL Database    │
+       │ (users, bookmarks,  │
+       │  reading history)   │
+       └─────────────────────┘
 ```
 
----
-
-# 🛠️ Technology Stack
-
-## 🎨 Frontend
-
-| Technology      | Purpose                         |
-| --------------- | ------------------------------- |
-| React           | User interface                  |
-| Vite            | Frontend development/build tool |
-| Tailwind CSS v4 | Styling                         |
-| Framer Motion   | Animations                      |
-| React Router    | Client-side routing             |
-| Zustand         | Global state management         |
-| Axios           | API communication               |
+> The backend and MySQL handle user data; Quranic text and translations come from AlQuran.cloud.
 
 ---
 
-## ⚙️ Backend
+## 🛠️ Tech Stack
 
-| Technology | Purpose                   |
-| ---------- | ------------------------- |
-| Node.js    | JavaScript runtime        |
-| Express.js | REST API framework        |
-| JWT        | Authentication            |
-| bcryptjs   | Password hashing          |
-| mysql2     | MySQL database connection |
-
----
-
-## 🗄️ Database
-
-**MySQL**
-
-The database stores application-specific data such as:
-
-* Users
-* Bookmarks
-* Reading history
-* User activity
+| Layer | Technology | Purpose |
+| --- | --- | --- |
+| **Frontend** | React | UI components |
+| | Vite | Dev server & build tool |
+| | Tailwind CSS v4 | Styling |
+| | Framer Motion | Animations |
+| | React Router | Client-side routing |
+| | Zustand | Global state management |
+| | Axios | HTTP requests |
+| **Backend** | Node.js | JavaScript runtime |
+| | Express.js | REST API framework |
+| | jsonwebtoken (JWT) | Authentication |
+| | bcryptjs | Password hashing |
+| | mysql2 | MySQL driver |
+| **Database** | MySQL | Users, bookmarks, reading history |
+| **External API** | AlQuran.cloud | Surahs, Ayahs, Arabic text, translations |
+| **DevOps** | Docker & Docker Compose | Containerized local setup |
 
 ---
 
-## 🌐 External API
-
-The project uses:
-
-**AlQuran.cloud API**
-
-It provides Quranic data including:
-
-* Surahs
-* Ayahs
-* Arabic text
-* Translations
-* Quran metadata
-
----
-
-# 📁 Project Structure
+## 📁 Project Structure
 
 ```text
 Islamic-Quran-Learning-Platform/
-│
 ├── frontend/
-│   │
+│   ├── public/
 │   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── layouts/
-│   │   ├── services/
-│   │   ├── store/
-│   │   ├── hooks/
-│   │   ├── assets/
+│   │   ├── assets/         # Images, fonts
+│   │   ├── components/     # Reusable UI components
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── layouts/        # Page layouts
+│   │   ├── pages/          # Route-level pages
+│   │   ├── services/       # API calls (Axios)
+│   │   ├── store/          # Zustand stores
 │   │   ├── App.jsx
 │   │   └── main.jsx
-│   │
-│   ├── public/
 │   ├── package.json
 │   └── vite.config.js
 │
 ├── backend/
-│   │
-│   ├── controllers/
-│   ├── routes/
-│   ├── middleware/
-│   ├── models/
-│   ├── config/
-│   ├── database/
-│   ├── server.js
-│   ├── run_init_db.js
+│   ├── config/             # App & DB configuration
+│   ├── controllers/        # Request handlers
+│   ├── database/           # SQL schema / init scripts
+│   ├── middleware/         # Auth (JWT) & error handling
+│   ├── models/             # Data access
+│   ├── routes/             # API routes
+│   ├── server.js           # Entry point
+│   ├── run_init_db.js      # Database initializer
 │   ├── package.json
-│   └── .env
+│   └── .env                # Local only — not committed
 │
 ├── docker-compose.yml
-├── README.md
-└── .gitignore
+├── .gitignore
+└── README.md
 ```
 
 ---
 
-# 💻 Installation & Setup
+## 🚀 Getting Started
 
-There are two ways to run the project:
+Choose one of two setups:
 
-### Option 1 — Docker ⭐ Recommended
+| Option | Best for |
+| --- | --- |
+| 🐳 **Docker** (recommended) | Quickest setup — runs frontend, backend, and MySQL together |
+| 💻 **Local** | Developing without Docker |
 
-### Option 2 — Run Locally
-
----
-
-# 🐳 Option 1: Run with Docker
-
-Docker is the recommended method because it automatically manages:
-
-* Frontend
-* Backend
-* MySQL database
-* Dependencies
-* Service networking
-
-## Prerequisites
-
-Install:
-
-* Docker Desktop
-
-Make sure Docker Desktop is running before starting the project.
-
----
-
-## 1. Clone the Repository
+First, clone the repository:
 
 ```bash
 git clone <your-repository-url>
-```
-
-Navigate into the project:
-
-```bash
 cd Islamic-Quran-Learning-Platform
 ```
 
----
+### 🐳 Option 1: Run with Docker (Recommended)
 
-## 2. Start the Application
-
-Run:
+**Prerequisite:** [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
 
 ```bash
 docker compose up --build
 ```
 
-Docker will:
+This builds the frontend and backend, creates the MySQL database, and starts all services.
 
-```text
-Build Frontend
-      ↓
-Build Backend
-      ↓
-Create MySQL Database
-      ↓
-Start All Services
-```
+| Service | URL |
+| --- | --- |
+| Frontend | http://localhost:5173 |
+| Backend API | http://localhost:5000 |
+| API health check | http://localhost:5000/api/test |
+| Database status | http://localhost:5000/api/db-status |
 
----
-
-## 3. Access the Application
-
-### Frontend
-
-```text
-http://localhost:5173
-```
-
-### Backend API
-
-```text
-http://localhost:5000
-```
-
-### Backend Test Endpoint
-
-```text
-http://localhost:5000/api/test
-```
-
-### Database Status
-
-```text
-http://localhost:5000/api/db-status
-```
-
-The database status endpoint verifies that the backend can successfully communicate with MySQL.
-
----
-
-## 🛑 Stop Docker Services
-
-Press:
-
-```text
-Ctrl + C
-```
-
-or run:
+**Useful commands:**
 
 ```bash
+# Stop all services (or press Ctrl + C)
 docker compose down
-```
 
----
-
-## ⚠️ Reset the Database
-
-If you want to completely remove the database volume and start fresh:
-
-```bash
+# Reset everything, including the database
 docker compose down -v
-```
-
-Then restart:
-
-```bash
 docker compose up --build
 ```
 
-> ⚠️ Removing the volume deletes the stored MySQL data.
+> ⚠️ `docker compose down -v` **permanently deletes** all stored MySQL data.
+
+### 💻 Option 2: Run Locally
+
+**Prerequisites:** Node.js 18+, npm, and a running MySQL server.
+
+**1. Configure the backend** — create `backend/.env` (see [Environment Variables](#-environment-variables)).
+
+**2. Initialize the database and start the backend**
+
+```bash
+cd backend
+npm install
+node run_init_db.js     # creates the database and tables
+npm run start           # or: npx nodemon server.js (auto-reload)
+```
+
+Backend runs at **http://localhost:5000**.
+
+**3. Start the frontend** (in a new terminal)
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend runs at **http://localhost:5173**.
 
 ---
 
-# 💻 Option 2: Run Locally
+## 🔑 Environment Variables
 
-## Prerequisites
-
-Install:
-
-* Node.js 18+
-* MySQL
-* npm
-
----
-
-# 🗄️ 1. Configure MySQL
-
-Make sure your local MySQL server is running.
-
-Create/configure the backend `.env` file:
+Create `backend/.env`:
 
 ```env
 PORT=5000
@@ -474,346 +277,142 @@ DB_NAME=quran_db
 JWT_SECRET=your_secure_jwt_secret
 ```
 
----
-
-# 🏗️ 2. Initialize the Database
-
-Navigate to the backend:
-
-```bash
-cd backend
-```
-
-Run:
-
-```bash
-node run_init_db.js
-```
-
-This initializes the required database and tables.
-
----
-
-# ⚙️ 3. Start the Backend
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Start the server:
-
-```bash
-npm run start
-```
-
-For development:
-
-```bash
-npx nodemon server.js
-```
-
-The backend will run on:
-
-```text
-http://localhost:5000
-```
-
----
-
-# 🎨 4. Start the Frontend
-
-Open another terminal.
-
-Navigate to:
-
-```bash
-cd frontend
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Start the Vite development server:
-
-```bash
-npm run dev
-```
-
-The frontend will be available at:
-
-```text
-http://localhost:5173
-```
-
----
-
-# 🔑 Environment Variables
-
-Never commit sensitive credentials to GitHub.
-
-Example:
-
-```env
-PORT=5000
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=your_mysql_password
-DB_NAME=quran_db
-JWT_SECRET=your_secure_secret
-```
-
-Make sure `.env` is included in `.gitignore`:
-
-```gitignore
-.env
-node_modules/
-dist/
-```
-
----
-
-# 🔐 Authentication Flow
-
-The authentication system works approximately as follows:
-
-```text
-User
- │
- ▼
-Register / Login
- │
- ▼
-Express Authentication API
- │
- ├── bcryptjs
- │      └── Password Hashing
- │
- └── JWT
-        └── Authentication Token
- │
- ▼
-Frontend
- │
- ▼
-Zustand
- │
- ▼
-Protected Routes
- │
- ▼
-Personal Dashboard
-```
-
----
-
-# 🔖 Bookmark Flow
-
-```text
-User opens Surah
-        │
-        ▼
-Reads Ayah
-        │
-        ▼
-Clicks ⭐
-        │
-        ▼
-Frontend sends API request
-        │
-        ▼
-Backend verifies JWT
-        │
-        ▼
-Bookmark stored in MySQL
-        │
-        ▼
-Bookmark appears in Dashboard
-```
-
----
-
-# 📖 Quran Reading Flow
-
-```text
-User
- │
- ▼
-Surah Browser
- │
- ▼
-Select Surah
- │
- ▼
-Frontend requests Quran data
- │
- ▼
-AlQuran.cloud API
- │
- ▼
-Arabic + Translation
- │
- ▼
-Interactive Reading View
-```
-
----
-
-# 🧪 API Endpoints
-
-The backend exposes REST APIs for application functionality.
-
-Example endpoint categories:
-
-```text
-Authentication
-├── Register
-└── Login
-
-Users
-└── User profile
-
-Bookmarks
-├── Create bookmark
-├── Get bookmarks
-└── Remove bookmark
-
-Reading History
-├── Save history
-└── Get history
-
-System
-├── API test
-└── Database status
-```
-
----
-
-# 📱 Responsive Design
-
-The application is designed to work across:
-
-* 💻 Desktop
-* 💻 Laptop
-* 📱 Mobile
-* 📱 Tablet
-
-The interface adapts to different screen sizes using responsive Tailwind CSS layouts.
-
----
-
-# 📚 Learning Outcomes
-
-Through this project, the following concepts are practiced:
-
-### Frontend
-
-* React components
-* Props
-* State management
-* React hooks
-* Routing
-* API integration
-* Authentication state
-* Responsive design
-* Animations
-
-### Backend
-
-* Node.js
-* Express.js
-* REST APIs
-* Middleware
-* Controllers
-* Authentication
-* JWT
-* Password hashing
-* Error handling
-
-### Database
-
-* MySQL
-* Database relationships
-* SQL queries
-* CRUD operations
-* Database initialization
-
-### DevOps
-
-* Docker
-* Docker Compose
-* Containers
-* Service networking
-* Environment variables
-
----
-
-# 🔮 Future Improvements
-
-Possible future enhancements include:
-
-* 🤖 AI-powered Quran learning assistant
-* 🧠 AI memorization assistant
-* 🔎 Semantic Quran search
-* 📊 Advanced learning analytics
-* 🎙️ Voice-based Quran practice
-* 📝 AI-generated revision quizzes
-* 🌐 Multiple language translations
-* 📱 Progressive Web App (PWA)
-* 🔔 Learning reminders
-* 👥 Community learning features
-* 📚 Tafsir integration
-* 🎯 Personalized learning recommendations
-
----
-
-# 🤝 Contributing
-
-Contributions and suggestions are welcome.
-
-To contribute:
-
-```bash
-# Fork the repository
-
-# Clone your fork
-git clone <your-fork-url>
-
-# Create a new branch
-git checkout -b feature/new-feature
-
-# Make your changes
-
-# Commit
-git add .
-git commit -m "Add new feature"
-
-# Push
-git push origin feature/new-feature
-```
-
-Then create a Pull Request.
-
----
-
-# 📜 License
-
-This project is developed for **educational and learning purposes**.
-
-Please ensure that Quranic content, translations, audio, and other external resources are used according to their respective licenses and terms of use.
-
----
-
-# 👩‍💻 Author
-
-**Samni Hasnath**
-
-Software Engineering Undergraduate
-
-> 🕌 **"And We have certainly made the Quran easy for remembrance, so is there anyone who will remember?"**
+> 🔒 **Never commit `.env` to GitHub.** Make sure your `.gitignore` includes:
 >
-> - Quran 54:17
+> ```gitignore
+> .env
+> node_modules/
+> dist/
+> ```
+
+---
+
+## ⚙️ How It Works
+
+### 🔐 Authentication
+
+```text
+Register / Login
+      │
+      ▼
+Express Auth API ──► bcryptjs hashes & verifies password
+      │
+      ▼
+JWT issued ──► stored in Zustand on the frontend
+      │
+      ▼
+Protected routes unlocked ──► Dashboard
+```
+
+### 📖 Reading a Surah
+
+```text
+Surah Browser → select Surah → fetch from AlQuran.cloud
+      → Arabic text + English translation → Reading view
+```
+
+### 🔖 Bookmarking an Ayah
+
+```text
+Click ⭐ on an Ayah → API request with JWT → backend verifies token
+      → bookmark saved in MySQL → appears in Dashboard
+```
+
+---
+
+## 🧪 API Overview
+
+| Category | Operations |
+| --- | --- |
+| **Auth** | Register, Login |
+| **Users** | Get user profile |
+| **Bookmarks** | Create, list, remove |
+| **Reading History** | Save, list |
+| **System** | `GET /api/test`, `GET /api/db-status` |
+
+---
+
+## 🔮 Roadmap
+
+**Learning features**
+- [ ] 🔊 Audio recitation
+- [ ] 🔎 Quran search (including semantic search)
+- [ ] 🧠 Memorization support & AI memorization assistant
+- [ ] 📚 Tafsir integration
+- [ ] 🌐 Multiple translation languages
+- [ ] 📝 AI-generated revision quizzes
+- [ ] 🎙️ Voice-based recitation practice
+- [ ] 🕌 Islamic articles & resources
+
+**Platform features**
+- [ ] 🛠️ Admin panel — user, article & quiz management, moderation, statistics, activity monitoring
+- [ ] 📊 Learning progress & analytics
+- [ ] 🎯 Personalized recommendations
+- [ ] 🔔 Learning reminders
+- [ ] 👥 Community learning
+- [ ] 📱 Progressive Web App (PWA)
+
+---
+
+## 📚 Learning Outcomes
+
+| Area | Concepts practiced |
+| --- | --- |
+| **Frontend** | React components, props, hooks, routing, Zustand state, API integration, auth state, responsive design, animations |
+| **Backend** | Express REST APIs, controllers, middleware, JWT auth, password hashing, error handling |
+| **Database** | MySQL, relationships, SQL queries, CRUD, database initialization |
+| **DevOps** | Docker, Docker Compose, containers, service networking, environment variables |
+
+---
+
+## 🤝 Contributing
+
+Contributions and suggestions are welcome!
+
+1. **Fork** the repository
+2. **Clone** your fork
+   ```bash
+   git clone <your-fork-url>
+   ```
+3. **Create** a feature branch
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+4. **Commit** your changes
+   ```bash
+   git add .
+   git commit -m "Add: short description of your change"
+   ```
+5. **Push** and open a **Pull Request**
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+---
+
+## 📜 License
+
+This project is developed for **educational purposes**.
+
+Quranic text, translations, audio, and other external resources remain subject to their respective licenses and terms of use — please respect them when using or extending this project.
+
+---
+
+## 👩‍💻 Author
+
+**Samni Hasnath** — Software Engineering Undergraduate
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Samni_Hasnath-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/samni-hasnath03)
+[![GitHub](https://img.shields.io/badge/GitHub-SamniHasnath-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/SamniHasnath)
+
+---
+
+<div align="center">
+
+> 🕌 *"And We have certainly made the Qur'an easy for remembrance, so is there any who will remember?"*
+>
+> — **Surah Al-Qamar 54:17**
+
+⭐ **If you find this project useful, consider giving it a star!**
+
+</div>
